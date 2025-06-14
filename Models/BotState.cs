@@ -13,7 +13,8 @@ namespace AutoInsureBot.Models
         AwaitingTechPassport,    
         AwaitingDataConfirmation,
         AwaitingPriceAgreement,  
-        Completed                
+        Completed,
+        GenereatePolicy,
     }
 }
 

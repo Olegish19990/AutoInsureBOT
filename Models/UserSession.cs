@@ -9,8 +9,8 @@ namespace AutoInsureBot.Models
     public class UserSession
     {
 
-        public string passportInformation { get; set; } = string.Empty;
-        public string techPasportInformation { get; set; } = string.Empty;
+        public PredictionPassport? passportInformation { get; set; }
+        public PredictionTechPassport? techPassportInformation { get; set; }
         public BotState botState { get; set; } = BotState.None;
       
     }

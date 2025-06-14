@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Vadym\\source\\repos\\AutoInsureBot\\AutoInsureBot.csproj": {}
+    "C:\\Users\\Vadym\\Desktop\\AutoBot\\AutoInsureBot\\AutoInsureBot.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Vadym\\source\\repos\\AutoInsureBot\\AutoInsureBot.csproj": {
+    "C:\\Users\\Vadym\\Desktop\\AutoBot\\AutoInsureBot\\AutoInsureBot.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Vadym\\source\\repos\\AutoInsureBot\\AutoInsureBot.csproj",
+        "projectUniqueName": "C:\\Users\\Vadym\\Desktop\\AutoBot\\AutoInsureBot\\AutoInsureBot.csproj",
         "projectName": "AutoInsureBot",
-        "projectPath": "C:\\Users\\Vadym\\source\\repos\\AutoInsureBot\\AutoInsureBot.csproj",
+        "projectPath": "C:\\Users\\Vadym\\Desktop\\AutoBot\\AutoInsureBot\\AutoInsureBot.csproj",
         "packagesPath": "C:\\Users\\Vadym\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Vadym\\source\\repos\\AutoInsureBot\\obj\\",
+        "outputPath": "C:\\Users\\Vadym\\Desktop\\AutoBot\\AutoInsureBot\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -74,6 +74,14 @@
             "Mindee": {
               "target": "Package",
               "version": "[3.28.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "QuestPDF": {
+              "target": "Package",
+              "version": "[2025.5.1, )"
             },
             "Telegram.Bot": {
               "target": "Package",

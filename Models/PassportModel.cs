@@ -6,22 +6,8 @@ using System.Threading.Tasks;
 
 namespace AutoInsureBot.Models
 {
-    public class Root
-    {
-        public Document document { get; set; }
-    }
 
-    public class Document
-    {
-        public Inference inference { get; set; }
-    }
-
-    public class Inference
-    {
-        public Prediction prediction { get; set; }
-    }
-
-    public class Prediction
+    public class PredictionPassport
     {
         public Field date_of_birth { get; set; }
         public Field date_of_expiry { get; set; }

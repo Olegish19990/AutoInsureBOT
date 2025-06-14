@@ -10,6 +10,8 @@ using AutoInsureBot.Services;
 using AutoInsureBot.Models;
 using AutoInsureBot.Store;
 using Microsoft.Extensions.Caching.Memory;
+using AutoInsureBot.Handlers;
+using AutoInsureBot.Handlers.BotStateHandlerFactory;
 namespace AutoInsureBot
 {
     public class TelegramBotWorker : BackgroundService
@@ -18,16 +20,24 @@ namespace AutoInsureBot
         private readonly ILogger<TelegramBotWorker> _logger;
         private readonly MindeeService _mindeeService;
         private readonly IUserSessionStore _userSessionStore;
+        private readonly IBotStateHandlerFactory _botStateHandlerFactory;
+
+
+
         public TelegramBotWorker(
             TelegramBotService botService, 
             ILogger<TelegramBotWorker> logger,
             MindeeService mindeeService,
-            IUserSessionStore userSessionStore)
+            IUserSessionStore userSessionStore,
+            IBotStateHandlerFactory botStateHandlerFactory
+            )
         {
             _botService = botService;
             _logger = logger;
             _mindeeService = mindeeService;
             _userSessionStore = userSessionStore;
+            _botStateHandlerFactory = botStateHandlerFactory;
+        
         }
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
@@ -46,54 +56,29 @@ namespace AutoInsureBot
         }
 
 
-    
+
         private async Task HandleUpdateAsync(ITelegramBotClient botClient, Telegram.Bot.Types.Update update, CancellationToken cancellationToken)
         {
-            var userSession = _userSessionStore.GetUserSession(update.Message.From.Id);
-            if(userSession==null)
+            var userId = update.CallbackQuery?.From?.Id
+                        ?? update.Message?.From?.Id
+                        ?? throw new InvalidOperationException("Cannot determine user ID");
+
+            UserSession userSession = _userSessionStore.GetUserSession(userId);
+            if (userSession==null)
             {
                 UserSession newUserSession = new UserSession();
-                _userSessionStore.setUserSession(update.Message.From.Id,newUserSession);
-                _logger.LogInformation($"Create new User Session: {update.Message.From.Id}");
+                _userSessionStore.setUserSession(userId,newUserSession);
+                _logger.LogInformation($"Create new User Session: {userId}");
                 userSession = newUserSession;   
             }
-            switch (userSession.botState)
-            {
-                case BotState.None:
-                    {
-                        Console.WriteLine($"Botstate NONE for {update.Message.From.Id}: {userSession.botState}");
-                        userSession.botState = BotState.AwaitingPassport;
-                        break;
-                    }
-                case BotState.AwaitingPassport:
-                    {
-                        Console.WriteLine($"Botstate Awaiting passport for {update.Message.From.Id}: {userSession.botState}");
-                        break;
-                    }
-                case BotState.AwaitingTechPassport:
-                    {
-                        break;
-                    }
-                case BotState.AwaitingDataConfirmation:
-                    {
-                        break;
-                    }
-                case BotState.AwaitingPriceAgreement:
-                    {
-                        break;
-                    }
-                case BotState.Completed:
-                    {
-                        break;
-                    }
-                    
 
-            }
+            var handler = _botStateHandlerFactory.GetHandler(userSession.botState);
+            await handler.HandleAsync(update, userSession, botClient);
         }
 
         private Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
         {
-            _logger.LogError(exception, "Ошибка в Telegram боте");
+            _logger.LogError(exception, "Error");
             return Task.CompletedTask;
         }
     }

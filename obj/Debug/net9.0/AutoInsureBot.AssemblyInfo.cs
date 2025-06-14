@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AutoInsureBot")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+beda8c847aa59a390fbc6fb250da96b3dc4a312a")]
 [assembly: System.Reflection.AssemblyProductAttribute("AutoInsureBot")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AutoInsureBot")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

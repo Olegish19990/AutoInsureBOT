@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace AutoInsureBot.Models
 {
-    public class TechPassportModel
+    public class PredictionTechPassport
     {
+        public Field address { get; set; }
+        public Field registration_number { get; set; }
+        public Field surname_or_company { get; set; }
+    }
+
+    public class FieldTech
+    {
+        public string value { get; set; }
     }
 }
