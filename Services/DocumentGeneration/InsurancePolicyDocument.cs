@@ -12,10 +12,7 @@ namespace AutoInsureBot.Services.DocumentGeneration
 {
     public class InsurancePolicyDocument
     {
-        static InsurancePolicyDocument()
-        {
-            QuestPDF.Settings.License = LicenseType.Community;
-        }
+       
         public static byte[] CreatePolicy(InsurancePolicyModel policy)
         {
             QuestPDF.Settings.License = LicenseType.Community;
@@ -36,9 +33,9 @@ namespace AutoInsureBot.Services.DocumentGeneration
                         col.Item().Text("Policy Holder Information").Bold().FontSize(16);
                         col.Item().Text($"Surname: {policy.Surname}");
                         col.Item().Text($"Name: {policy.Name}");
-                        col.Item().Text($"Document: {policy.DocumentNumber}");
-                        col.Item().Text($"Document: {policy.DateOfBirth}");
-                        col.Item().Text($"Document: {policy.DateOfExpiry}");
+                        col.Item().Text($"Document number: {policy.DocumentNumber}");
+                        col.Item().Text($"Date of Birth: {policy.DateOfBirth}");
+                        col.Item().Text($"Date of expiry passport: {policy.DateOfExpiry}");
 
                         col.Item().PaddingVertical(10).LineHorizontal(1);
                         col.Item().Text("Vehicle Information").Bold().FontSize(16);

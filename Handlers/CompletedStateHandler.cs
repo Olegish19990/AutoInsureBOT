@@ -13,6 +13,7 @@ namespace AutoInsureBot.Handlers
                 userSession.passportInformation = null;
                 userSession.techPassportInformation = null;
                 userSession.botState = BotState.None;
+                botClient.SendMessage(update.Message.From.Id, "Bot restarted. Type /start, for new session.");
             }
             return Task.CompletedTask;
         }

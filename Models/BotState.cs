@@ -9,12 +9,12 @@ namespace AutoInsureBot.Models
     public enum BotState
     {
         None,
+        SessionStart,
         AwaitingPassport,        
         AwaitingTechPassport,    
         AwaitingDataConfirmation,
         AwaitingPriceAgreement,  
         Completed,
-        GenereatePolicy,
     }
 }
 

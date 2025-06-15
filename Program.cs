@@ -25,11 +25,12 @@ Host.CreateDefaultBuilder(args)
         services.AddSingleton<MindeeService>();
         services.AddSingleton<IUserSessionStore, UserSessionStore>();
         services.AddTransient<NoneStateHandler>();
+        services.AddTransient<SessionStartHandler>();
         services.AddTransient<AwaitingPassportStateHandler>();
         services.AddTransient<AwaitingTechPassportStateHandler>();
         services.AddTransient<AwaitingDataConfirmationStateHandler>();
         services.AddTransient<AwaitingPriceAgreementStateHandler>();
-      
+        services.AddTransient<CompletedStateHandler>();
         services.AddSingleton<IBotStateHandlerFactory, BotStateHandlerFactory>();
     
 

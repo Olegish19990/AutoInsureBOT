@@ -36,6 +36,12 @@ namespace AutoInsureBot.Handlers
                         );
                     }
 
+                    userSession.botState = BotState.Completed;
+                    botClient.SendMessage(
+                        chatId: userId, 
+                        text: "Session is completed. Type /restart, for restart."
+                        );
+
                     break;
 
                 case "confirm_no_price":

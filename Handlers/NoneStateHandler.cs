@@ -1,6 +1,7 @@
 ﻿using AutoInsureBot.Models;
 using Telegram.Bot;
 using Telegram.Bot.Types;
+using Telegram.Bot.Types.ReplyMarkups;
 
 namespace AutoInsureBot.Handlers
 {
@@ -18,20 +19,38 @@ namespace AutoInsureBot.Handlers
 
 
 
-                string helloMessage = " I’m your virtual assistant for purchasing car insurance.\r\n" +
+                string helloMessage = "" +
+                    "I’m your virtual assistant for purchasing car insurance.\r\n" +
                     "My job is to help you get your insurance policy quickly and easily.\r\n\r\n" +
                     "Here’s how it works:\r\n" +
-                    "1 You send photos of your passport and vehicle registration document.\r\n" +
-                    "2️ I will process the documents and show you the extracted information.\r\n" +
-                    "3️ Once you confirm the data, I’ll offer you a fixed price — 100 USD.\r\n. " +
-                    "4 After your agreement, I’ll issue your insurance policy and send it to you." +
-                    "\n\nPlease send photo of you're passport";
-                await botClient.SendMessage(userId, helloMessage);
-                userSession.botState = BotState.AwaitingPassport;
+                    "You send photos of your passport and vehicle registration document.\r\n" +
+                    "I will process the documents and show you the extracted information.\r\n" +
+                    "Once you confirm the data, I’ll offer you a fixed price — 100 USD.\r\n" +
+                    "After your agreement, I’ll issue your insurance policy and send it to you." +
+                    "\n\n";
+             
+                var inlineKeyboard = new InlineKeyboardMarkup(new[]
+                    {
+                      new []
+                     {
+                            InlineKeyboardButton.WithCallbackData("Start session", "start_session"),
+                      }
+                    });
+
+
+                await botClient.SendMessage(
+                       chatId: userId,
+                       text:helloMessage,
+                       replyMarkup: inlineKeyboard
+                   );
+
+                userSession.botState = BotState.SessionStart;
+
+
             }
 
-         
- 
+
+
         }
     }
 

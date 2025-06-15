@@ -44,7 +44,7 @@ namespace AutoInsureBot
             var bot = _botService.Client;
 
             var me = await bot.GetMe(stoppingToken);
-            _logger.LogInformation($"Запущен бот @{me.Username}");
+            _logger.LogInformation($"Bot started @{me.Username}");
 
             bot.StartReceiving(
                 HandleUpdateAsync,
