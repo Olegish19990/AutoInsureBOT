@@ -31,5 +31,7 @@ appsettings.json: This file should contain your Mindee API token.
 secret.json: This file should contain your Telegram Bot Token.
 
 {
-  "TelegramBotToken": "your_telegram_bot_token"
+  "TelegramBotToken": { 
+  "Token": "your_telegram_bot_token"
+  }
 }
